@@ -3,7 +3,7 @@ const routes = express.Router();
 
 const CepController = require('./controllers/CepController')
 
-routes.get('/ceps', CepController.index)
-routes.post('/ceps', CepController.gravarCeps)
+routes.get('/ceps', CepController.listar)
+routes.post('/ceps', CepController.gravar)
 
 module.exports = routes

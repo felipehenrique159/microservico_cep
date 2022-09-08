@@ -1,19 +1,15 @@
-const axios = require('axios')
+const cepService = require('../Services/CepService')
 
 module.exports = {
 
-    async index(req, res) {
-        return res.json('teste')
+    async gravar(req, res) {
+        await cepService.gravarCeps(req, res)
+        return res.json('ok')
     },
 
-    async gravarCeps(req, res) {
-        if (req.body.ceps.length > 0) {
-            for (let i = 0; i < req.body.ceps.length; i++) {
-              let res = await axios.get(`https://viacep.com.br/ws/${req.body.ceps[i]}/json/`)
-              console.log(res.data);
-            }
-        }
-        return res.json('ok')
+    async listar(req, res) {
+        const ceps = await cepService.listarCeps()
+        res.json(ceps)
     }
 
 }
